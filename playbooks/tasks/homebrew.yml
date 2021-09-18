@@ -1,0 +1,8 @@
+---
+- name: install homebrew
+  become: false
+  script: |
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  args:
+    creates: /usr/local/bin/brew
+  when: ansible_distribution == 'MacOSX'

@@ -1,0 +1,6 @@
+---
+
+- hosts: all
+
+  pre_tasks:
+    - include: tasks/homebrew.yml
