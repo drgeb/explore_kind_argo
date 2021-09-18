@@ -8,3 +8,4 @@ APP_DIR="$(cd "${PROG_DIR}/.." 2>/dev/null 1>&2 && pwd)"
 kubectl create namespace argocd
 kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
+kubectl apply -f ${APP_DIR}/infra/argocd/ingress.yaml
