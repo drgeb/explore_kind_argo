@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 PROG_PATH=${BASH_SOURCE[0]}      # this script's name
 PROG_NAME=${PROG_PATH##*/}       # basename of script (strip path)
