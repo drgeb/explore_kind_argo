@@ -1,3 +1,0 @@
-use_default_rules: true
-skip_list:
-  - '204'
