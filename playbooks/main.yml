@@ -26,3 +26,14 @@
         names:
         - localhost
         - k8s.local
+      - ip: 127.0.0.1
+        names:
+        - localhost
+        - kubernetes.default.svc
+      - ip: 127.0.0.1
+        names:
+        - localhost
+        - kind-registry.local
+
+    - include: kind_pre_reqs.yml
+    - include: kind_create.yml

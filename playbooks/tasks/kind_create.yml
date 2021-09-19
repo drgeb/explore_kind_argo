@@ -1,0 +1,20 @@
+---
+
+- name: Ensure kind cluster exists.
+  import_role: 
+  name: kameshsampath:kind
+  vars: 
+    cluster_name: kind
+    kind_create: true
+    kind_create_config: true
+    kind_custom_registry: true
+    kind_custom_registry_aliases:
+      - example.com
+      - example.org
+      - test.com
+      - test.org
+    container_registry_name: 'kind-registry.local'
+    container_registry_port: 5000
+    extra_port_mappings:
+      - '0.0.0.0:80:80'
+      - '0.0.0.0:443:443'
