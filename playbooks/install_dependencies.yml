@@ -1,0 +1,28 @@
+---
+
+- hosts: localhost
+
+  tasks:
+    - file:
+        path:  roles
+        state: absent
+
+    - local_action:
+        command ansible-galaxy role install  -r ../requirements.yml 
+
+    - local_action:
+        command ansible-galaxy collection install  -r ../requirements.yml
+
+    - name: "Install opensift python package for [community.kubernetes.k8s plugin]"
+      pip:
+        name: openshift
+
+    - name: "Install pyyaml python package for [community.kubernetes.k8s plugin]"
+      pip:
+        name: pyyaml
+
+    - lineinfile:
+        dest:   ../.gitignore
+        regexp: '^\/roles$'
+        line:   '/roles'
+        state:  present 

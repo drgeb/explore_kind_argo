@@ -2,12 +2,14 @@
 
 - name: Ensure kind cluster exists.
   import_role: 
-  name: kameshsampath:kind
+    name: kameshsampath.kind
   vars: 
     cluster_name: kind
     kind_create: true
     kind_create_config: true
     kind_custom_registry: true
+    deploy_ingress: false
+    kind_binary: /home/drgeb/.asdf/shims/kind
     kind_custom_registry_aliases:
       - example.com
       - example.org

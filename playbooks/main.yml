@@ -35,5 +35,5 @@
         - localhost
         - kind-registry.local
 
-    - include: kind_pre_reqs.yml
-    - include: kind_create.yml
+    - include: tasks/kind_pre_reqs.yml
+    - include: tasks/kind_create.yml
