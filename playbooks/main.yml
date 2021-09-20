@@ -4,3 +4,36 @@
 
   pre_tasks:
     - include: tasks/homebrew.yml
+  tasks:
+    - name: Ensure the etc/hosts file with node name for argocd exists
+      tags: etchostsupdate
+      become: yes
+      become_user: root
+      lineinfile:
+        dest: /etc/hosts
+        regexp: "^{{ item['ip'] }}\t{{ item['names'] | join(' ') }}.*$"
+        line: "{{ item['ip'] }}\t{{ item['names'] | join(' ') }}"
+        state: present
+        backup: yes
+      register: ecthostsupdate
+      when: 'ansible_hostname != "item" or ansible_hostname== " item"'
+      with_items:
+      - ip: 127.0.0.1
+        names:
+        - localhost
+        - argocd.local
+      - ip: 127.0.0.1
+        names:
+        - localhost
+        - k8s.local
+      - ip: 127.0.0.1
+        names:
+        - localhost
+        - kubernetes.default.svc
+      - ip: 127.0.0.1
+        names:
+        - localhost
+        - kind-registry.local
+
+    - include: tasks/kind_pre_reqs.yml
+    - include: tasks/kind_create.yml

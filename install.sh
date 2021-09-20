@@ -7,7 +7,7 @@ EOF
 }
 
 # Bootstrap script
-PLAYBOOK="${1:-default}"
+PLAYBOOK="${1:-main}"
 
 echo_exit() {
   echo "$1"
@@ -54,7 +54,4 @@ command -v ansible > /dev/null || install_ansible
 # Run the playbook
 echo "Enter sudo password for BECOME password."
 
-if [ ! -d ${PLAYBOOK}]; then
-  declare -r PLAYBOOK=main
-fi
 ansible-playbook "playbooks/${PLAYBOOK}.yml" -i hosts -K && banner

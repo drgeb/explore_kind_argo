@@ -12,4 +12,4 @@ echo Wait till ingress is up before continueing
 kubectl wait --namespace ingress-nginx \
   --for=condition=ready pod \
   --selector=app.kubernetes.io/component=controller \
-  --timeout=90s
+  --timeout=270s

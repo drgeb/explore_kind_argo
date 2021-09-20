@@ -1,0 +1,8 @@
+---
+roles:
+    - name: cimon-io.asdf
+    - name: kameshsampath.kind
+collections:
+    - name: community.general
+    - name: community.docker
+    - name: community.kubernetes

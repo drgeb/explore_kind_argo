@@ -1,0 +1,10 @@
+---
+- name: Check if KinD is installed
+  command:
+    argv:
+      - kind
+      - version
+  register: kind_result
+  ignore_errors: True
+  changed_when: False
+
