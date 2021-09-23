@@ -6,4 +6,8 @@ PROG_DIR="$(cd "$(dirname "${PROG_PATH:-$PWD}")" 2>/dev/null 1>&2 && pwd)"
 APP_DIR="$(cd "${PROG_DIR}/.." 2>/dev/null 1>&2 && pwd)"
 NAMESPACE=argocd
 
-kubectl get pods -n ${NAMESPACE} -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2
+# Create An Application From A Git Repository
+argocd app create guestbook --repo https://github.com/argoproj/argocd-example-apps.git --path guestbook --dest-server https://kubernetes.default.svc --dest-namespace default
+
+# Sync (Deploy) The Application
+argocd app get guestbook
