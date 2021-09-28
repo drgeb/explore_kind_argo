@@ -16,16 +16,16 @@ kubectl patch svc argocd-server -n ${NAMESPACE} -p '{"spec": {"type": "LoadBalan
 kubectl apply -f ${APP_DIR}/infra/argocd/ingress.yaml
 
 # Port Forwarding
-kubectl port-forward svc/argocd-server -n ${NAMESPACE} 8080:443
+# kubectl port-forward svc/argocd-server -n ${NAMESPACE} 8080:443
 
 # Obtain password stored in clear text
 declare ARGOCD_SERVER=argocd.local
 declare ARGOCD_USERNAME=admin
 declare ARGOCD_PASSWORD=`kubectl -n ${NAMESPACE} get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
 
-argocd login ${ARGOCD_SERVER} --username ${ARGOCD_USERNAME} --password ${ARGOCD_PASSWORD}
+argocd login ${ARGOCD_SERVER} --username ${ARGOCD_USERNAME} --password ${ARGOCD_PASSWORD} --grpc-web
 
 # Register A Cluster To Deploy Apps To (Optional)
 declare CLUSTER=`kubectl config get-contexts -o name`
-argocd cluster add ${CLUSTER}
+argocd cluster add ${CLUSTER} --grpc-web
 
