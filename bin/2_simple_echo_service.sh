@@ -8,6 +8,16 @@ APP_DIR="$(cd "${PROG_DIR}/.." 2>/dev/null 1>&2 && pwd)"
 
 kubectl apply -f https://kind.sigs.k8s.io/examples/ingress/usage.yaml
 
+kubectl wait --namespace default \
+        --for=condition=Ready \
+        --timeout=270s \
+        pod/foo-app
+
+kubectl wait --namespace default \
+        --for=condition=Ready \
+        --timeout=270s \
+        pod/bar-app
+
 # should output "foo"
 curl localhost/foo
 # should output "bar"

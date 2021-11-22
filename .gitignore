@@ -1,3 +1,4 @@
 roles/cimon-io.asdf/*
 roles/kameshsampath.kind/*
 /roles
+.zsh-snap/
